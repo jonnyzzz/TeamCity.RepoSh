@@ -3,13 +3,7 @@ TeamCity.RepoSh
 
 plugin to implement repo.sh version control for TeamCity. This VCS could be used for Android platform builds/checkout/changed monitoring
 
-
-TeamCity plugin template
-========================
-
-This is sample IDEA project for creating plugins for TeamCity.
-
-In this sample you will find:
+In this repo you will find:
 =============================
 - TeamCity server plugin
 - With teamcity-plugin.xml
@@ -25,8 +19,5 @@ In this sample you will find:
 
 What's next? 
 =============
- - Fork this repository, 
- - Rename plugin jar's with right name 
-   (replace PLUGIN with your plugin name in artifacts and teamcity-server-plugin.xml)
  - Have fun!
 
