@@ -6,5 +6,6 @@
     <JAVADOC />
     <SOURCES />
     <jarDirectory url="file://$TeamCityDistribution$/webapps/ROOT/WEB-INF/lib" recursive="false" />
+    <jarDirectory url="file://$TeamCityDistribution$/webapps/ROOT/WEB-INF/lib" recursive="false" />
   </library>
 </component>

@@ -4,6 +4,7 @@ import jetbrains.buildServer.controllers.BaseController;
 import jetbrains.buildServer.serverSide.InvalidProperty;
 import jetbrains.buildServer.serverSide.PropertiesProcessor;
 import jetbrains.buildServer.vcs.VcsException;
+import jetbrains.buildServer.vcs.VcsSupportCore;
 import jetbrains.buildServer.web.openapi.PluginDescriptor;
 import jetbrains.buildServer.web.openapi.WebControllerManager;
 import org.jetbrains.annotations.NotNull;
@@ -22,24 +23,25 @@ import java.util.Map;
  * Date: 02.09.12 13:56
  */
 public class RepoShController extends BaseController {
-  private final String myPath;
-  @NotNull
+  private static final String REPOSH_SETTINGS_HTML = "reposh-settings.html";
+
   private final GitPluginProxy myProxy;
   private final PluginDescriptor myDescriptor;
-  private PropertiesProcessor myVcsPropertiesProcessor;
 
   public RepoShController(@NotNull final GitPluginProxy proxy,
                           @NotNull final PluginDescriptor desc,
                           @NotNull final WebControllerManager web) {
     myProxy = proxy;
     myDescriptor = desc;
-    myPath = desc.getPluginResourcesPath("reposh-settings.html");
-    web.registerController(myPath, this);
+    String path = desc.getPluginResourcesPath(REPOSH_SETTINGS_HTML);
+    web.registerController(path, this);
   }
 
   @NotNull
-  public String getSettingsUrl() {
-    return myPath;
+  public String getSettingsPath() {
+    //Default path is /plugins/<vcs name>/<path returned here>
+    //In our setup we assume paths are same to let it work.
+    return REPOSH_SETTINGS_HTML;
   }
 
   @Nullable
@@ -47,7 +49,9 @@ public class RepoShController extends BaseController {
   protected ModelAndView doHandle(@NotNull final HttpServletRequest request,
                                   @NotNull final HttpServletResponse response) throws Exception {
     ModelAndView mv = new ModelAndView(myDescriptor.getPluginResourcesPath("reposh-settings.jsp"));
-    mv.getModel().put("gitsettings", myProxy.getGitPlugin().getCore().getVcsSettingsJspFilePath());
+    VcsSupportCore core = myProxy.getGitPlugin().getCore();
+    //have to workaround obsolete API usage
+    mv.getModel().put("gitsettings", "/plugins/" + core.getName() + "/" + core.getVcsSettingsJspFilePath());
     return mv;
   }
 

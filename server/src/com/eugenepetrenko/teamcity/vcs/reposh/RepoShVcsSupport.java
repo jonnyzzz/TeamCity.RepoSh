@@ -3,6 +3,7 @@ package com.eugenepetrenko.teamcity.vcs.reposh;
 import jetbrains.buildServer.serverSide.PropertiesProcessor;
 import jetbrains.buildServer.util.CaseInsensitiveStringComparator;
 import jetbrains.buildServer.vcs.*;
+import jetbrains.buildServer.web.openapi.PluginDescriptor;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
@@ -14,17 +15,21 @@ import java.util.Map;
  *         Date: 31.08.12 16:58
  */
 public class RepoShVcsSupport extends ServerVcsSupport {
+  @NotNull
+  private final PluginDescriptor myDescriptor;
   private final RepoShController myPaths;
   private final RepoShFileContentProvider myFileContentProvider;
   private final RepoShCurrentVersion myCurrentVersion;
   private final RepoShCollectChangesPolicy myCollectChangesPolicy;
   private final RepoShBuildPatchPolicy myBuildPatchPolicy;
 
-  public RepoShVcsSupport(@NotNull final RepoShController paths,
+  public RepoShVcsSupport(@NotNull final PluginDescriptor descriptor,
+                          @NotNull final RepoShController paths,
                           @NotNull final RepoShFileContentProvider fileContentProvider,
                           @NotNull final RepoShCurrentVersion currentVersion,
                           @NotNull final RepoShCollectChangesPolicy collectChangesPolicy,
                           @NotNull final RepoShBuildPatchPolicy buildPatchPolicy) {
+    myDescriptor = descriptor;
     myPaths = paths;
     myFileContentProvider = fileContentProvider;
     myCurrentVersion = currentVersion;
@@ -38,7 +43,7 @@ public class RepoShVcsSupport extends ServerVcsSupport {
 
   @NotNull
   public String getName() {
-    return "repo.sh";
+    return myDescriptor.getPluginName();
   }
 
   @NotNull
@@ -52,7 +57,7 @@ public class RepoShVcsSupport extends ServerVcsSupport {
 
   @NotNull
   public String getVcsSettingsJspFilePath() {
-    return myPaths.getSettingsUrl();
+    return myPaths.getSettingsPath();
   }
 
   @NotNull
