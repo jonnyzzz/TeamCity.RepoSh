@@ -23,12 +23,12 @@ public class RepoShVcsSupport extends ServerVcsSupport {
 
   @NotNull
   public String getName() {
-    return null;
+    return "repo.sh";
   }
 
   @NotNull
   public String getDisplayName() {
-    return null;
+    return "git-repo checkout";
   }
 
   public PropertiesProcessor getVcsPropertiesProcessor() {
