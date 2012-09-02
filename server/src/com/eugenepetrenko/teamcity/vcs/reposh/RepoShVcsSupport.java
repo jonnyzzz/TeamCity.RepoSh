@@ -14,13 +14,13 @@ import java.util.Map;
  *         Date: 31.08.12 16:58
  */
 public class RepoShVcsSupport extends ServerVcsSupport {
-  private final RepoShPaths myPaths;
+  private final RepoShController myPaths;
   private final RepoShFileContentProvider myFileContentProvider;
   private final RepoShCurrentVersion myCurrentVersion;
   private final RepoShCollectChangesPolicy myCollectChangesPolicy;
   private final RepoShBuildPatchPolicy myBuildPatchPolicy;
 
-  public RepoShVcsSupport(@NotNull final RepoShPaths paths,
+  public RepoShVcsSupport(@NotNull final RepoShController paths,
                           @NotNull final RepoShFileContentProvider fileContentProvider,
                           @NotNull final RepoShCurrentVersion currentVersion,
                           @NotNull final RepoShCollectChangesPolicy collectChangesPolicy,

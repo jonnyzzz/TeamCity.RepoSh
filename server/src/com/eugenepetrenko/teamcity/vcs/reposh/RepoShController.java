@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  * Created by Eugene Petrenko (eugene.petrenko@gmail.com)
  * Date: 02.09.12 13:56
  */
-public class RepoShController extends BaseController implements RepoShPaths {
+public class RepoShController extends BaseController {
   private final String myPath;
   @NotNull
   private final GitPluginProxy myProxy;
