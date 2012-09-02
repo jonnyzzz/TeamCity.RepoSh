@@ -16,11 +16,14 @@ import java.util.Map;
 public class RepoShVcsSupport extends ServerVcsSupport {
   private final RepoShPaths myPaths;
   private final RepoShFileContentProvider myFileContentProvider;
+  private final RepoShCurrentVersion myCurrentVersion;
 
   public RepoShVcsSupport(@NotNull final RepoShPaths paths,
-                          @NotNull final RepoShFileContentProvider fileContentProvider) {
+                          @NotNull final RepoShFileContentProvider fileContentProvider,
+                          @NotNull final RepoShCurrentVersion currentVersion) {
     myPaths = paths;
     myFileContentProvider = fileContentProvider;
+    myCurrentVersion = currentVersion;
   }
 
   public boolean sourcesUpdatePossibleIfChangesNotFound(@NotNull VcsRoot root) {
@@ -71,7 +74,7 @@ public class RepoShVcsSupport extends ServerVcsSupport {
 
   @NotNull
   public String getCurrentVersion(@NotNull VcsRoot root) throws VcsException {
-    return null;
+    return myCurrentVersion.getCurrentVersion(root);
   }
 
   @NotNull
