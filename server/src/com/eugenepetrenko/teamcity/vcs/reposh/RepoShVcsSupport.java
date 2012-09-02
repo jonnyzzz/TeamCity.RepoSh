@@ -47,7 +47,7 @@ public class RepoShVcsSupport extends ServerVcsSupport {
   }
 
   public PropertiesProcessor getVcsPropertiesProcessor() {
-    return null;
+    return myPaths.getVcsPropertiesProcessor();
   }
 
   @NotNull
