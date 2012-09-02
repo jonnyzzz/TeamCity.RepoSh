@@ -10,6 +10,7 @@
   <bean class="com.eugenepetrenko.teamcity.vcs.reposh.RepoShFileContentProvider"/>
   <bean class="com.eugenepetrenko.teamcity.vcs.reposh.RepoShCurrentVersion"/>
   <bean class="com.eugenepetrenko.teamcity.vcs.reposh.RepoShCollectChangesPolicy"/>
+  <bean class="com.eugenepetrenko.teamcity.vcs.reposh.RepoShBuildPatchPolicy"/>
 
   <bean class="com.eugenepetrenko.teamcity.vcs.reposh.GitPluginProxy"/>
   <bean class="com.eugenepetrenko.teamcity.vcs.reposh.RepoShController"/>
