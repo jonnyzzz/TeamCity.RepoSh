@@ -17,13 +17,16 @@ public class RepoShVcsSupport extends ServerVcsSupport {
   private final RepoShPaths myPaths;
   private final RepoShFileContentProvider myFileContentProvider;
   private final RepoShCurrentVersion myCurrentVersion;
+  private final RepoShCollectChangesPolicy myCollectChangesPolicy;
 
   public RepoShVcsSupport(@NotNull final RepoShPaths paths,
                           @NotNull final RepoShFileContentProvider fileContentProvider,
-                          @NotNull final RepoShCurrentVersion currentVersion) {
+                          @NotNull final RepoShCurrentVersion currentVersion,
+                          @NotNull final RepoShCollectChangesPolicy collectChangesPolicy) {
     myPaths = paths;
     myFileContentProvider = fileContentProvider;
     myCurrentVersion = currentVersion;
+    myCollectChangesPolicy = collectChangesPolicy;
   }
 
   public boolean sourcesUpdatePossibleIfChangesNotFound(@NotNull VcsRoot root) {
@@ -79,7 +82,7 @@ public class RepoShVcsSupport extends ServerVcsSupport {
 
   @NotNull
   public CollectChangesPolicy getCollectChangesPolicy() {
-    return null;
+    return myCollectChangesPolicy;
   }
 
   @NotNull
