@@ -1,9 +1,11 @@
 package com.eugenepetrenko.teamcity.vcs.reposh;
 
 import jetbrains.buildServer.serverSide.PropertiesProcessor;
+import jetbrains.buildServer.util.CaseInsensitiveStringComparator;
 import jetbrains.buildServer.vcs.*;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
 
@@ -12,9 +14,13 @@ import java.util.Map;
  *         Date: 31.08.12 16:58
  */
 public class RepoShVcsSupport extends ServerVcsSupport {
-  @NotNull
-  public String getCurrentVersion(@NotNull VcsRoot root) throws VcsException {
-    return null;
+  private final RepoShPaths myPaths;
+  private final RepoShFileContentProvider myFileContentProvider;
+
+  public RepoShVcsSupport(@NotNull final RepoShPaths paths,
+                          @NotNull final RepoShFileContentProvider fileContentProvider) {
+    myPaths = paths;
+    myFileContentProvider = fileContentProvider;
   }
 
   public boolean sourcesUpdatePossibleIfChangesNotFound(@NotNull VcsRoot root) {
@@ -37,29 +43,34 @@ public class RepoShVcsSupport extends ServerVcsSupport {
 
   @NotNull
   public String getVcsSettingsJspFilePath() {
-    return null;
+    return myPaths.getSettingsUrl();
   }
 
   @NotNull
   public String describeVcsRoot(VcsRoot vcsRoot) {
-    return null;
+    return "repo.sh root" + vcsRoot.getName();
   }
 
   public Map<String, String> getDefaultVcsProperties() {
-    return null;
+    return Collections.emptyMap();
   }
 
   public String getVersionDisplayName(@NotNull String version, @NotNull VcsRoot root) throws VcsException {
-    return null;
+    return version;
   }
 
   @NotNull
   public Comparator<String> getVersionComparator() {
-    return null;
+    return new CaseInsensitiveStringComparator();
   }
 
   @NotNull
   public VcsFileContentProvider getContentProvider() {
+    return myFileContentProvider;
+  }
+
+  @NotNull
+  public String getCurrentVersion(@NotNull VcsRoot root) throws VcsException {
     return null;
   }
 

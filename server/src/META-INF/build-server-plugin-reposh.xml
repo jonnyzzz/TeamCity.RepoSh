@@ -7,6 +7,8 @@
         >
 
   <bean class="com.eugenepetrenko.teamcity.vcs.reposh.RepoShVcsSupport"/>
+  <bean class="com.eugenepetrenko.teamcity.vcs.reposh.RepoShFileContentProvider"/>
+
   <bean class="com.eugenepetrenko.teamcity.vcs.reposh.GitPluginProxy"/>
 
 </beans>
